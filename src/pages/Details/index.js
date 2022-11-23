@@ -15,7 +15,7 @@ export function Details(){
     const [movie, setMovie] = useState({})
 
     useEffect(()=>{
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=74ab3e3886955e07f5171788bb399747&language=en-US&page=1`)
         .then(reponse => reponse.json())
         .then(data => {
             const {title, poster_path, overview, relase_date}= data
