@@ -55,3 +55,15 @@ h1:hover{
 
 
 `
+
+export const ContainerTip = styled.div`
+img{
+  width:150px;
+  
+}
+.card{
+  align-items: center;
+  text-align:center;
+}
+
+`

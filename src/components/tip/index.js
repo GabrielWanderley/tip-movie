@@ -1,11 +1,12 @@
 import { useState, useEffect,} from "react"
 import Modal from "react-modal"
-import { Container, Modals} from "./style"
+import { Container, ContainerTip, Modals} from "./style"
 
 Modal.setAppElement('#root')
 export function Tip(){
   const [genre, setGenre]= useState([])
   const [ movies, setMovies]=useState([])
+  const [moviesG, setMoviesG]=useState([])
    
   const image_path = "https://image.tmdb.org/t/p/w500"
 
@@ -45,30 +46,18 @@ export function Tip(){
           setIsOpen(false);
         }
   
-           const genero =(event)=>{
-        console.log(event.target.value)
 
-
-      }
-        useEffect(()=>{
-          fetch(`https://api.themoviedb.org/3/discover/movie?api_key=THE_KEY&language=en-US&sort_by=release_date.desc&page=1&with_genres=${genero.id}
-          `)
-           .then(reponse => reponse.json())
-           .then(data => console.log(data))
-         },[])
 
       function CreateATip(event){ 
 
           event.preventDefault()
-          useEffect(()=>{
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=THE_KEY&language=en-US&sort_by=release_date.desc&page=1&with_genres=${genero.value}
+        console.log(event.target.value)
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=74ab3e3886955e07f5171788bb399747&language=en-US&sort_by=release_date.desc&page=1&with_genres=${event.target.value}
             `)
              .then(reponse => reponse.json())
-             .then(data => console.log(data))
-           },[])
-
-
-        }
+             .then(data => setMoviesG(data.results))
+      }
+        
 
 
    return(
@@ -89,18 +78,31 @@ export function Tip(){
             <h1> choose the movie genre </h1> 
             <hr/>
           <form onSubmit={CreateATip}>
-            <select onChange={ genero } value={genre.id}>
+            <select onChange={ CreateATip } value={genre.id}>
               <option>Genres</option>
             {genre.map(genres =>{
         return(
-              <option key={genres.id} value={genres.id}>{genres.name}</option>
+              <option key={genres.id} value={(genres.id)}>{genres.name}</option>
         )})}
             </select>
           
           <button type="submit" onClick={()=>CreateATip}>give a hint</button>
 
           </form> 
- 
+          {moviesG.map(moviesg =>{
+        return(
+          <ContainerTip key={moviesg.id} >
+            <div className="card">
+                  <img 
+                  src={`${image_path}${moviesg.poster_path}`} 
+                  alt={moviesg.title} 
+                  />
+                  <p>{moviesg.title}</p>
+            </div>
+
+
+          </ContainerTip>
+ )})}
         </div>
           </Modals>
         </Modal>
