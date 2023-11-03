@@ -1,6 +1,26 @@
 import { useState, useEffect,} from "react"
 import Modal from "react-modal"
-import { Container, ContainerTip, Modals} from "./style"
+import { Container,ContainerTip, Modals} from "./style"
+import'./styles.css'
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+
+
+const CustomNextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} style={{ ...style, display: 'block',  marginRight: '100px'  }} onClick={onClick} />
+  );
+};
+
+const CustomPrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} style={{ ...style, display: 'block',  marginLeft: '100px', zIndex: 1, }} onClick={onClick} />
+  );
+};
 
 Modal.setAppElement('#root')
 export function Tip(){
@@ -58,7 +78,15 @@ export function Tip(){
              .then(data => setMoviesG(data.results))
       }
         
-
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <CustomNextArrow />,
+        prevArrow: <CustomPrevArrow />,
+      };
 
    return(
     <Container>
@@ -86,23 +114,31 @@ export function Tip(){
         )})}
             </select>
           
-          <button type="submit" onClick={()=>CreateATip}>give a hint</button>
+          {/* <button type="submit" onClick={()=>CreateATip}>give a hint</button> */}
 
-          </form> 
+          </form>  
+          <Slider {...settings}>
           {moviesG.map(moviesg =>{
         return(
-          <ContainerTip key={moviesg.id} >
-            <div className="card">
-                  <img 
-                  src={`${image_path}${moviesg.poster_path}`} 
-                  alt={moviesg.title} 
-                  />
-                  <p>{moviesg.title}</p>
-            </div>
+         
+
+                 
+              <ContainerTip>
+                  <div className="carro" key={moviesg.id}>
+                     <img src={`${image_path}${moviesg.poster_path}`} alt={moviesg.id} className="carousel-image" />
+                     <h3>{moviesg.title}</h3>
+                   </div>
+              </ContainerTip>
+                 
+
+                 
+              
 
 
-          </ContainerTip>
- )})}
+
+          
+ )})} 
+ </Slider>
         </div>
           </Modals>
         </Modal>

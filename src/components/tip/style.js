@@ -32,6 +32,8 @@ export const Modals = styled.div`
    h1{
 color: white;
 transition: 0.3s;
+cursor: pointer;
+
 }
 h1:hover{
   transform: scale(1.1);
@@ -57,9 +59,18 @@ h1:hover{
 `
 
 export const ContainerTip = styled.div`
+
+.carro{
+  align-items: center;
+  max-width: 600px;
+
+}
+
 img{
   width:150px;
-  
+  margin-left: 165px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .card{
   align-items: center;
