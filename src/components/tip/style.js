@@ -3,18 +3,44 @@ import styled from "styled-components";
 export const Container = styled.div`
 
 .openM{
-  background-color: black;
-  color: yellow;
-  margin-bottom: 14px;
-  border: yellow  solid 2px;
-  padding: 1px;
-  border-radius: 1.5px;
-  transition: 0.3s;
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  width: 120px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skew(-21deg);
+  margin-bottom: 15px;
+
+}
+span {
+  display: inline-block;
+  transform: skew(21deg);
+}
+.openM::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: yellow;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
 }
 .openM:hover{
-  transform: scale(1.1);
-  
+  color:  black;
+;
+
 }
+.openM:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
 
 
 
@@ -51,7 +77,10 @@ h1:hover{
     padding-top: 20px;
     }
    hr{
-    margin: 10px 0;
+    margin: 10px;
+    height: 2px; 
+    background-color: yellow;
+    border-color: yellow;
    }
 }
 
@@ -71,7 +100,13 @@ img{
   margin-left: 165px;
   margin-top: 15px;
   margin-bottom: 15px;
+  transition: all 0.3s;
 }
+
+img:hover{
+   transform: scale(1.1);
+}
+
 .card{
   align-items: center;
   text-align:center;

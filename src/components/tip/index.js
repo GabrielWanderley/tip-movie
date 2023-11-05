@@ -7,6 +7,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
+import { Link } from "react-router-dom"
+
 
 const CustomNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -25,7 +27,6 @@ const CustomPrevArrow = (props) => {
 Modal.setAppElement('#root')
 export function Tip(){
   const [genre, setGenre]= useState([])
-  const [ movies, setMovies]=useState([])
   const [moviesG, setMoviesG]=useState([])
    
   const image_path = "https://image.tmdb.org/t/p/w500"
@@ -37,24 +38,7 @@ export function Tip(){
    },[])
  
    
-   useEffect(()=>{
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=74ab3e3886955e07f5171788bb399747&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
-     .then(reponse => reponse.json())
-     .then(data =>{ const{
-      with_genres,
-      title,
-      poster_path,
-      id,
-     }=data
-     
-     const movie={
-      id,
-      with_genres,
-      title,
-      image: `${image_path}${poster_path}`,
-     }
-      setMovies(movie)})
-   },[])
+
  //  console.log(movies)
         const [modalIsOpen, setIsOpen] = useState(false);
       
@@ -90,7 +74,7 @@ export function Tip(){
 
    return(
     <Container>
-        <button onClick={openModal} className="openM">open tips</button>
+        <button onClick={openModal} className="openM"><span>open tips</span></button>
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
@@ -125,7 +109,9 @@ export function Tip(){
                  
               <ContainerTip>
                   <div className="carro" key={moviesg.id}>
-                     <img src={`${image_path}${moviesg.poster_path}`} alt={moviesg.id} className="carousel-image" />
+                  <Link to={`/details/${moviesg.id}`}> 
+                        <img src={`${image_path}${moviesg.poster_path}`} alt={moviesg.id} className="carousel-image" />
+                  </Link>
                      <h3>{moviesg.title}</h3>
                    </div>
               </ContainerTip>

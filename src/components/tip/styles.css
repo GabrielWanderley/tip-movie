@@ -5,4 +5,7 @@
   margin-left: 100px;
   margin-bottom: 15px;
   margin-right: 100px;
+  background-color: yellow;
+  border-color: yellow;
+  border-radius: 10%;
 }
