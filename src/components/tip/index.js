@@ -90,7 +90,7 @@ export function Tip(){
             <h1> choose the movie genre </h1> 
             <hr/>
           <form onSubmit={CreateATip}>
-            <select onChange={ CreateATip } value={genre.id}>
+            <select onChange={ CreateATip } value={genre.id} className="selec-op">
               <option>Genres</option>
             {genre.map(genres =>{
         return(

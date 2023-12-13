@@ -42,7 +42,7 @@ span {
   right: 0;
   opacity: 1;
 
-
+}
 
 `
 
@@ -73,6 +73,7 @@ h1:hover{
  text-align: center;
 
 
+
    h1{
     padding-top: 20px;
     }
@@ -82,6 +83,16 @@ h1:hover{
     background-color: yellow;
     border-color: yellow;
    }
+}
+
+select{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
+
 }
 
 
